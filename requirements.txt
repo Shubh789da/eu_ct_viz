@@ -1,0 +1,7 @@
+beautifulsoup4==4.12.2
+numpy==1.25.1
+pandas==2.0.3
+Plost==0.2.5
+Requests==2.31.0
+stqdm==0.0.5
+streamlit==1.24.1
