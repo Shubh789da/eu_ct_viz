@@ -267,7 +267,7 @@ if st.session_state.query:
 #       st.title('Clinical trials data')
       st.subheader('Sample data')
 #       st.header('Dataset: Clinical trials of', st.session_state.text)
-      st.markdown('I found this dataset at... https://clinicaltrials.gov')
+      st.markdown('I found this dataset at... https://www.clinicaltrialsregister.eu/')
       st.markdown('**It is a sample of 100 rows from the dataset**')
 #       st.text('Below is the sample DataFrame')
       st.dataframe(filtered_df.head(100))
