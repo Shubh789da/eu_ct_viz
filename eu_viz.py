@@ -46,7 +46,7 @@ def create_dataframe(query):
     df_final = pd.DataFrame()  # Initialize an empty DataFrame to store the final data
 
     # Iterate through each line in the text data
-    for i in stqdm(range(1, last_page + 1),desc=f"We are loading your total{last_page} search pages. It may take time currently we are loading : ", mininterval=1):
+    for i in stqdm(range(1, last_page + 1),desc=f"We are loading your total {last_page} search pages. It may take time currently we are loading : ", mininterval=1):
         sleep(0.5)
         base_url = "https://www.clinicaltrialsregister.eu/ctr-search/rest/download/summary?query={}&page={}&mode=current_page"
         full_url = base_url.format(full_query, i)
@@ -181,11 +181,13 @@ if st.session_state.query:
     else:
         st.sidebar.write(f"The only year available is: {int(max(years))}")    
 
-
-    # Filter the DataFrame based on the selected dates
-    filtered_df = filtered_df[(filtered_df['Start Date'].dt.year >= selected_year_range[0]) & (filtered_df['Start Date'].dt.year <= selected_year_range[1])]
-    # filtered_df['StartDate'] = filtered_df['StartDate'].dt.strftime('%Y-%m')
-    filtered_df['CT_Phase']=filtered_df['CT_Phase'].fillna('N/A')
+    if int(min(years))< int(max(years)):
+        # Filter the DataFrame based on the selected dates
+        filtered_df = filtered_df[(filtered_df['Start Date'].dt.year >= selected_year_range[0]) & (filtered_df['Start Date'].dt.year <= selected_year_range[1])]
+        # filtered_df['StartDate'] = filtered_df['StartDate'].dt.strftime('%Y-%m')
+        filtered_df['CT_Phase']=filtered_df['CT_Phase'].fillna('N/A')
+    else:
+         filtered_df = filtered_df[(filtered_df['Start Date'].dt.year == (max(years)))]
 
 
 
